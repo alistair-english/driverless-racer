@@ -20,13 +20,9 @@ services:
       - DISPLAY=${DISPLAY}
       # stops Qt form using the MIT-SHM (shared memory) X11 extension - we can't use shared memory between the container and the X11 host
       - QT_X11_NO_MITSHM=1
-      # https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.10.0/user-guide.html#driver-capabilities
-      # Controls which driver libraries/binaries will be mounted inside the container
-      - NVIDIA_DRIVER_CAPABILITIES=all
     volumes:
       # Allows graphical programs in the container
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      # - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
   
   dev:
     extends: base
@@ -56,6 +52,16 @@ services:
   
   dev_gpu:
     extends: dev
+    runtime: nvidia
+    environment:
+      # https://wiki.archlinux.org/title/PRIME#Configure_applications_to_render_using_GPU
+      # my laptop has a GPU and integrated graphics, we need to select the GPU to render libGL stuff as the integrated
+      # graphics isnt available to the container
+      - __NV_PRIME_RENDER_OFFLOAD=1
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+      # https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.10.0/user-guide.html#driver-capabilities
+      # Controls which driver libraries/binaries will be mounted inside the container
+      - NVIDIA_DRIVER_CAPABILITIES=all
     deploy:
       resources:
         reservations:

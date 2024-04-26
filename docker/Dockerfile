@@ -9,13 +9,14 @@ SHELL ["/bin/bash", "-c"]
 
 FROM base as dev
 
-# Install extra tools for development
+# install extra tools for development
 RUN apt update && apt install -y --no-install-recommends \
  gdb \
  gdbserver \
  nano \
  tmux \
- net-tools
+ net-tools \
+ mesa-utils
 
 # https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user#_creating-a-nonroot-user
 ARG USERNAME=containuser
@@ -37,6 +38,11 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
  && echo "$SNIPPET" >> "/home/${USERNAME}/.bashrc"
 
 RUN mkdir -p /ws/src && chown -R ${USERNAME}:${USER_GID} /ws
+
+# set up the entrypoint
+COPY ./docker/entrypoint.sh /
+RUN chmod 777 /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
 
 ENV SHELL=/bin/bash
 USER ${USERNAME}
