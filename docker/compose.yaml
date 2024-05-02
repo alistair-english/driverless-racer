@@ -1,0 +1,77 @@
+# Good reference: https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
+name: driverless-racer
+
+services:
+  base:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      args:
+        ROS_DISTRO: iron
+      target: base
+    # Interactive shell
+    stdin_open: true
+    tty: true
+    # Networking and IPC for ROS 2
+    network_mode: host
+    ipc: host
+    environment:
+      # Allows graphical programs in the container
+      - DISPLAY=${DISPLAY}
+      # stops Qt form using the MIT-SHM (shared memory) X11 extension - we can't use shared memory between the container and the X11 host
+      - QT_X11_NO_MITSHM=1
+      # https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.10.0/user-guide.html#driver-capabilities
+      # Controls which driver libraries/binaries will be mounted inside the container
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    volumes:
+      # Allows graphical programs in the container
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
+  
+  dev:
+    extends: base
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      target: dev
+      args:
+        - UID=${UID:-1000}
+        - GID=${UID:-1000}
+        - USERNAME=containuser
+      ssh:
+        - default  # mount the default ssh agent when cloning repos in docker build
+    volumes:
+      # mount the source code
+      - ../:/ws/src/:rw
+      # mount colcon build artifacts
+      - ../.colcon/build/:/ws/build/:rw
+      - ../.colcon/install/:/ws/install/:rw
+      - ../.colcon/log/:/ws/log/:rw
+      # mount bash history
+      - bashhistory:/commandhistory
+      # mount ignition folder
+      - ../.ignition:/home/containuser/.ignition
+    user: containuser
+    command: sleep infinity
+  
+  dev_gpu:
+    extends: dev
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  
+  lazydocker:
+    image: lazyteam/lazydocker
+    stdin_open: true
+    tty: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - lazydocker:/.config/jesseduffield/lazydocker
+
+volumes:
+  bashhistory:
+  lazydocker:
