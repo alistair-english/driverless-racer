@@ -1,0 +1,4 @@
+# Note: do NOT put "docker/" in this file as it will mask out all folders 
+# called "docker" and break builds :(
+LICENSE
+README.md

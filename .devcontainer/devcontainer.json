@@ -1,0 +1,9 @@
+{
+    "name": "driverless-racer-dev",
+    "dockerComposeFile": [
+        "../docker/compose.yaml"
+    ],
+    "service": "dev_gpu",
+    "shutdownAction": "stopCompose",
+    "workspaceFolder": "/ws/"
+}

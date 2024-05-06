@@ -1,4 +1,6 @@
-# Good reference: https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
+# Good reference for Docker + ROS: https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
+# Good reference for VSCode + Docker Compose: https://toptechtips.github.io/2023-05-17-docker-compose-multiple-dev-containers/
+
 name: driverless-racer
 
 services:
@@ -22,7 +24,7 @@ services:
       - QT_X11_NO_MITSHM=1
     volumes:
       # Allows graphical programs in the container
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix
   
   dev:
     extends: base
@@ -38,15 +40,15 @@ services:
         - default  # mount the default ssh agent when cloning repos in docker build
     volumes:
       # mount the source code
-      - ../:/ws/src/:rw
+      - ../:/ws/src/driverless-racer
       # mount colcon build artifacts
-      - ../.colcon/build/:/ws/build/:rw
-      - ../.colcon/install/:/ws/install/:rw
-      - ../.colcon/log/:/ws/log/:rw
+      - colcon_build:/ws/build
+      - colcon_install:/ws/install
+      - colcon_log:/ws/log
+      # mount ignition folder
+      - ignition:/home/containuser/.ignition
       # mount bash history
       - bashhistory:/commandhistory
-      # mount ignition folder
-      - ../.ignition:/home/containuser/.ignition
     user: containuser
     command: sleep infinity
   
@@ -80,4 +82,8 @@ services:
 
 volumes:
   bashhistory:
+  ignition:
+  colcon_build:
+  colcon_install:
+  colcon_log:
   lazydocker:
