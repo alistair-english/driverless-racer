@@ -1,6 +1,6 @@
 # Good reference: https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
 
-ARG ROS_DISTRO=humble
+ARG ROS_DISTRO
 
 FROM osrf/ros:${ROS_DISTRO}-simulation as base
 
