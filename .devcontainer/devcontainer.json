@@ -5,5 +5,20 @@
     ],
     "service": "dev_gpu",
     "shutdownAction": "stopCompose",
-    "workspaceFolder": "/ws/"
+    "workspaceFolder": "/ws/",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-iot.vscode-ros",
+                "ms-python.python",
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "redhat.vscode-xml",
+                "TakumiI.markdowntable",
+                "hediet.vscode-drawio",
+                "streetsidesoftware.code-spell-checker",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
 }

@@ -2,3 +2,4 @@
 # called "docker" and break builds :(
 LICENSE
 README.md
+_src_extras/

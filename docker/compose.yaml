@@ -47,6 +47,8 @@ services:
       - colcon_log:/ws/log
       # mount ignition folder
       - ignition:/home/containuser/.ignition
+      # mount rviz2 folder
+      - rviz2:/home/containuser/.rviz2
       # mount bash history
       - bashhistory:/commandhistory
     user: containuser
@@ -83,6 +85,7 @@ services:
 volumes:
   bashhistory:
   ignition:
+  rviz2:
   colcon_build:
   colcon_install:
   colcon_log:
