@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find hardware_gazebo)/urdf/components/_remap_action.xacro" />
+
+    <gazebo>
+        <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find hardware_gazebo)/config/controllers.yaml</parameters>
+            <ros>
+                <namespace>hardware</namespace>
+                <remapping>controller_arm/joint_trajectory:=arm/request/joint_trajectory</remapping>
+                <xacro:remap_action from_="controller_arm/follow_joint_trajectory" to="arm/follow_joint_trajectory" />
+                <remapping>controller_vehicle/reference:=vehicle/request/velocity</remapping>
+            </ros>
+        </plugin>
+    </gazebo>
+</robot>

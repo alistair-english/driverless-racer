@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="wheel_gz" params="link_name">
+        <gazebo reference="${link_name}">
+            <surface>
+                <friction>
+                    <ode>
+                        <mu>0.5</mu>
+                        <mu2>1.0</mu2>
+                        <fdir1>0 0 1</fdir1>
+                    </ode>
+                    <bullet>
+                        <friction>0.5</friction>
+                        <friction2>1</friction2>
+                        <rolling_friction>0.1</rolling_friction>
+                    </bullet>
+                </friction>
+            </surface>
+        </gazebo>
+    </xacro:macro>
+</robot>

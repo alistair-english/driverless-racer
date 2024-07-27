@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="remap_action" params="from_ to">
+        <remapping>${from_}/_action/feedback:=${to}/_action/feedback</remapping>
+        <remapping>${from_}/_action/status:=${to}/_action/status</remapping>
+        <remapping>${from_}/_action/cancel_goal:=${to}/_action/cancel_goal</remapping>
+        <remapping>${from_}/_action/get_result:=${to}/_action/get_result</remapping>
+        <remapping>${from_}/_action/send_goal:=${to}/_action/send_goal</remapping>
+    </xacro:macro>
+</robot>

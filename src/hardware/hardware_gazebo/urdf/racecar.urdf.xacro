@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="racecar">
+    <xacro:include filename="$(find hardware_core)/urdf/racecar.urdf.xacro" />
+
+    <xacro:include filename="$(find hardware_gazebo)/urdf/components/gz_ros2_control.urdf.xacro" />
+    <xacro:include filename="$(find hardware_gazebo)/urdf/components/ros2_control.urdf.xacro" />
+    <xacro:include filename="$(find hardware_gazebo)/urdf/components/sensor_plugin.urdf.xacro" />
+
+</robot>

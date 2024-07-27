@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+    <world name="sonoma_raceway">
+        <include>
+            <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Sun</uri>
+        </include>
+
+        <include>
+            <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Sonoma Raceway</uri>
+            <name>sonoma_raceway</name>
+          </include>
+
+    </world>
+</sdf>

@@ -75,6 +75,38 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        steering_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        steering_knuckle_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        steering_knuckle_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wheel_front_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_front_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_rear_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_rear_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -92,6 +124,20 @@ Visualization Manager:
           Value: true
         chassis:
           Value: true
+        steering_center:
+          Value: true
+        steering_knuckle_left:
+          Value: true
+        steering_knuckle_right:
+          Value: true
+        wheel_front_left:
+          Value: true
+        wheel_front_right:
+          Value: true
+        wheel_rear_left:
+          Value: true
+        wheel_rear_right:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -100,7 +146,17 @@ Visualization Manager:
       Tree:
         base_link:
           chassis:
-            {}
+            steering_center:
+              steering_knuckle_left:
+                wheel_front_left:
+                  {}
+              steering_knuckle_right:
+                wheel_front_right:
+                  {}
+            wheel_rear_left:
+              {}
+            wheel_rear_right:
+              {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -149,25 +205,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 15.039477348327637
+      Distance: 9.649466514587402
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -2.496586322784424
+        Y: 0.35629504919052124
+        Z: 0.00042157055577263236
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3647967576980591
+      Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.633573055267334
+      Yaw: 3.149080276489258
     Saved: ~
 Window Geometry:
   Displays:
