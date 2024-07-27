@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find hardware_core)/urdf/helpers/cylinder_link.xacro" />
+    <xacro:include filename="$(find hardware_core)/urdf/helpers/materials.xacro"/>
+
+    <xacro:macro name="wheel_rear" params="name parent xyz">
+        <joint name="wheel_rear_${name}_joint" type="continuous">
+            <parent link="${parent}"/>
+            <child link="wheel_rear_${name}"/>
+            <origin xyz="${xyz}" rpy="${-pi/2} 0 0"/>
+            <axis xyz="0 0 1"/>
+        </joint>
+
+        <xacro:property name="radius" value="0.312" />
+        <xacro:property name="length" value="0.404" />
+        <xacro:property name="o_z" value="0" />
+
+        <xacro:cylinder_link name="wheel_rear_${name}" radius="${radius}" length="${length}" o_z="${o_z}" mass="12">
+            <xacro:material_black />
+        </xacro:cylinder_link>
+    </xacro:macro>
+</robot>

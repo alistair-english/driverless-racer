@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find hardware_core)/urdf/components/steering_knuckle.xacro" />
+    <xacro:include filename="$(find hardware_core)/urdf/components/wheel_front.xacro" />
+
+    <xacro:macro name="steering" params="parent xyz">
+        <joint name="steering_center_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="steering_center"/>
+            <origin xyz="${xyz}" rpy="0 0 0"/>
+        </joint>
+
+        <link name="steering_center">
+            <!-- Link needs _some_ intertia otherwise gazebo will ignore it -->
+            <xacro:inertial_sphere mass="0.001" radius="0.001">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_sphere>
+        </link>
+
+        <xacro:steering_knuckle name="left" parent="steering_center" xyz="0 0.71 0"/>
+        <xacro:steering_knuckle name="right" parent="steering_center" xyz="0 -0.71 0"/>
+
+        <xacro:wheel_front name="left" parent="steering_knuckle_left" xyz="-0.1 0.1 0" />
+        <xacro:wheel_front name="right" parent="steering_knuckle_right" xyz="-0.1 -0.1 0" />
+    </xacro:macro>
+</robot>

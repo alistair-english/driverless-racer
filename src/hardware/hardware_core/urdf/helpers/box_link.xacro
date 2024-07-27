@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find hardware_core)/urdf/helpers/inertial_macros.xacro" />
+
+    <xacro:macro name="box_link" params="name x y z o_x o_y o_z mass *material">
+        <link name="${name}">
+            <visual>
+                <origin xyz="${o_x} ${o_y} ${o_z}" />
+                <geometry>
+                    <box size="${x} ${y} ${z}" />
+                </geometry>
+                <xacro:insert_block name="material" />
+            </visual>
+            <collision>
+                <origin xyz="${o_x} ${o_y} ${o_z}" />
+                <geometry>
+                    <box size="${x} ${y} ${z}" />
+                </geometry>
+            </collision>
+            <xacro:inertial_box mass="${mass}" x="${x}" y="${y}" z="${z}">
+                <origin xyz="${o_x} ${o_y} ${o_z}"/>
+            </xacro:inertial_box>
+        </link>
+    </xacro:macro>
+</robot>

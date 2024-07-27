@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="anvil">
+
+    <xacro:include filename="$(find hardware_core)/urdf/components/chassis.xacro" />
+    <xacro:include filename="$(find hardware_core)/urdf/components/steering.xacro" />
+    <xacro:include filename="$(find hardware_core)/urdf/components/wheel_rear.xacro" />
+
+    <link name="base_link" />
+    <xacro:chassis parent="base_link" xyz="0 0 0" />
+    <xacro:steering parent="chassis" xyz="-1.09 0 0" />
+    <xacro:wheel_rear name="left" parent="chassis" xyz="-4.21 0.772 0" />
+    <xacro:wheel_rear name="right" parent="chassis" xyz="-4.21 -0.772 0" />
+
+</robot>

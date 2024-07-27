@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find hardware_core)/urdf/helpers/materials.xacro" />
+
+    <xacro:macro name="base_footprint" params="height">
+        <joint name="base_footprint_joint" type="fixed">
+            <parent link="base_link" />
+            <child link="base_footprint" />
+            <origin xyz="0 0 -${height}" rpy="0 0 0" />
+        </joint>
+
+        <link name="base_footprint" />
+    </xacro:macro>
+</robot>
