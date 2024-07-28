@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find hardware_core)/urdf/helpers/materials.xacro" />
+
+    <xacro:macro name="camera" params="name parent xyz rpy='0 0 0'">
+        <joint name="camera_${name}_joint" type="fixed">
+            <parent link="${parent}" />
+            <child link="camera_${name}" />
+            <origin xyz="${xyz}" rpy="${rpy}" />
+        </joint>
+
+        <link name="camera_${name}">
+            <visual>
+                <origin xyz="0 0 0" rpy="${rpy}" />
+                <geometry>
+                    <box size="0.02 0.12 0.03" />
+                </geometry>
+                <xacro:material_red />
+            </visual>
+        </link>
+
+        <joint name="camera_${name}_optical_joint" type="fixed">
+            <parent link="camera_${name}" />
+            <child link="camera_${name}_optical" />
+            <origin xyz="0 0 0" rpy="-${pi/2} 0 -${pi/2}" />
+        </joint>
+
+        <link name="camera_${name}_optical" />
+
+    </xacro:macro>
+</robot>

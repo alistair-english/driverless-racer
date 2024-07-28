@@ -2,11 +2,14 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="racecar">
     
     <xacro:include filename="$(find hardware_gazebo)/urdf/components/sensors/livox_mid_360.xacro" />
+    <xacro:include filename="$(find hardware_gazebo)/urdf/components/sensors/camera.xacro" />
     
-    <xacro:include filename="$(find hardware_core)/urdf/racecar.urdf.xacro" />
     <xacro:include filename="$(find hardware_gazebo)/urdf/components/gz_ros2_control.urdf.xacro" />
     <xacro:include filename="$(find hardware_gazebo)/urdf/components/ros2_control.urdf.xacro" />
     <xacro:include filename="$(find hardware_gazebo)/urdf/components/sensor_plugin.urdf.xacro" />
 
+    <xacro:include filename="$(find hardware_core)/urdf/racecar.urdf.xacro" />
+
     <xacro:gz_livox_mid_360 name="front" />
+    <xacro:gz_camera name="front" />
 </robot>

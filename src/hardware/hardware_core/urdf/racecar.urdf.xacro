@@ -5,6 +5,7 @@
     <xacro:include filename="$(find hardware_core)/urdf/components/steering.xacro" />
     <xacro:include filename="$(find hardware_core)/urdf/components/wheel_rear.xacro" />
     <xacro:include filename="$(find hardware_core)/urdf/components/sensors/livox_mid_360.xacro" />
+    <xacro:include filename="$(find hardware_core)/urdf/components/sensors/camera.xacro" />
 
     <link name="base_link" />
     <xacro:chassis parent="base_link" xyz="0 0 0" />
@@ -13,5 +14,6 @@
     <xacro:wheel_rear name="right" parent="chassis" xyz="-4.21 -0.772 0" />
     
     <xacro:livox_mid_360 name="front" parent="chassis" xyz="-2.39 0 0.8" rpy="${pi} 0 0"/>
+    <xacro:camera name="front" parent="chassis" xyz="-2.39 0 0.85"/>
 
 </robot>

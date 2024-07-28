@@ -3,7 +3,7 @@
 
     <xacro:include filename="$(find hardware_core)/urdf/helpers/materials.xacro" />
 
-    <xacro:macro name="livox_mid_360" params="name parent xyz rpy">
+    <xacro:macro name="livox_mid_360" params="name parent xyz rpy='0 0 0'">
         <joint name="livox_${name}_joint" type="fixed">
             <parent link="${parent}" />
             <child link="livox_${name}" />
