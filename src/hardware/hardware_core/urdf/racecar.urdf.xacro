@@ -12,6 +12,6 @@
     <xacro:wheel_rear name="left" parent="chassis" xyz="-4.21 0.772 0" />
     <xacro:wheel_rear name="right" parent="chassis" xyz="-4.21 -0.772 0" />
     
-    <xacro:livox_mid_360 name="front" parent="chassis" xyz="-2.39 0 0.8" rpy="0 0 0"/>
+    <xacro:livox_mid_360 name="front" parent="chassis" xyz="-2.39 0 0.8" rpy="${pi} 0 0"/>
 
 </robot>
