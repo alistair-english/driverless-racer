@@ -6,6 +6,7 @@ def generate_launch_description():
 
     bridge_topics = [
         "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+        "/hardware/sensors/livox_front/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked",
     ]
 
     with l.namespace("simulation"):

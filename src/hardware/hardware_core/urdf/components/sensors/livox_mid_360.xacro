@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find hardware_core)/urdf/helpers/materials.xacro" />
+
+    <xacro:macro name="livox_mid_360" params="name parent xyz rpy">
+        <joint name="livox_${name}_joint" type="fixed">
+            <parent link="${parent}" />
+            <child link="livox_${name}" />
+            <origin xyz="${xyz}" rpy="${rpy}" />
+        </joint>
+
+        <link name="livox_${name}">
+            <visual>
+                <origin xyz="0 0 -0.0075" rpy="${rpy}" />
+                <geometry>
+                    <sphere radius="0.0205" />
+                </geometry>
+                <xacro:material_blue />
+            </visual>
+        </link>
+    </xacro:macro>
+</robot>

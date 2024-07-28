@@ -4,11 +4,14 @@
     <xacro:include filename="$(find hardware_core)/urdf/components/chassis.xacro" />
     <xacro:include filename="$(find hardware_core)/urdf/components/steering.xacro" />
     <xacro:include filename="$(find hardware_core)/urdf/components/wheel_rear.xacro" />
+    <xacro:include filename="$(find hardware_core)/urdf/components/sensors/livox_mid_360.xacro" />
 
     <link name="base_link" />
     <xacro:chassis parent="base_link" xyz="0 0 0" />
     <xacro:steering parent="chassis" xyz="-1.09 0 0" />
     <xacro:wheel_rear name="left" parent="chassis" xyz="-4.21 0.772 0" />
     <xacro:wheel_rear name="right" parent="chassis" xyz="-4.21 -0.772 0" />
+    
+    <xacro:livox_mid_360 name="front" parent="chassis" xyz="-2.39 0 0.8" rpy="0 0 0"/>
 
 </robot>

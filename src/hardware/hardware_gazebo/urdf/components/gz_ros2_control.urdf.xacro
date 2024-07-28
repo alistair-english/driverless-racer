@@ -7,7 +7,7 @@
             <parameters>$(find hardware_gazebo)/config/controllers.yaml</parameters>
             <ros>
                 <namespace>hardware</namespace>
-                <remapping>controller_ackermann/reference:=request/velocity</remapping>
+                <remapping>controller_ackermann/reference:=vehicle/request/velocity</remapping>
             </ros>
         </plugin>
     </gazebo>
